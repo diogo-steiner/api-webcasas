@@ -6,7 +6,9 @@
 
 ![api-webcasas](https://github.com/steinerstt/api-webcasas/assets/106714068/a3e33b9e-3a06-48f0-acac-3aa33b3d35af)
 
-> Api desenvolvida para a aplicação <a href="https://github.com/steinerstt/webcasas">webcasas</a> > <br>
+> Api desenvolvida para a aplicação <a href="https://github.com/steinerstt/webcasas">webcasas</a> > 
+
+ <br>
 
 ## 🛠️ Algumas tecnologias
 
@@ -79,8 +81,6 @@ $ yarn dev
 ```
 
 <br>
-
-# 🔰 Url: https://api-ziti.onrender.com
 
 ## 📋 Documentação
 
@@ -446,6 +446,7 @@ Possíveis erros
   "message": "Password invalid"
 }
 ```
+#
 
 #### DELETE/users
 
@@ -601,29 +602,29 @@ body Completo
 
 ```JSON
 {
-	"title": "Título",
-	"description": "Descrição",
-	"numberRooms": 4,
-	"numberBathrooms": 3,
-	"numberGarage": 8,
-	"propertyType": "Apartamento",
-	"isSale": false,
-	"isInCondo": true,
-	"hasPoolProperty": true,
-	"hasAirConditioningProperty": true,
-	"hasGrillProperty": false,
-	"hasFurnitureProperty": false,
-	"hasPollCondo": true,
-	"hasSecurity24hCondo": true,
-	"hasGymCondo": false,
-	"hasPartyHallCondo": false,
-	"price": "2198311",
-	"priceCondo": "4000",
-	"isCondoPriceIncluded": true,
-	"state": "São Paulo",
-	"city": "São Paulo",
-	"contact": "(21) 9 8888-9999",
-	"isDisplayContact": false
+  "title": "Título",
+  "description": "Descrição",
+  "numberRooms": 4,
+  "numberBathrooms": 3,
+  "numberGarage": 8,
+  "propertyType": "Apartamento",
+  "isSale": false,
+  "isInCondo": true, 
+  "hasPoolProperty": true,
+  "hasAirConditioningProperty": true,
+  "hasGrillProperty": false,
+  "hasFurnitureProperty": false,
+  "hasPollCondo": true,
+  "hasSecurity24hCondo": true,
+  "hasGymCondo": false,
+  "hasPartyHallCondo": false,
+  "price": "2198311",
+  "priceCondo": "4000",
+  "isCondoPriceIncluded": true,
+  "state": "São Paulo",
+  "city": "São Paulo",
+  "contact": "(21) 9 8888-9999",
+  "isDisplayContact": false
 }
 ```
 
@@ -709,7 +710,7 @@ Possíveis erros
 
 ```JSON
 {
-	"message": "Missing headers authorization"
+  "message": "Missing headers authorization"
 }
 ```
 
@@ -720,7 +721,9 @@ Possíveis erros
 Adicionar fotos da propriedade
 
 > Requer autenticação Bearer
+
 > Formulário no formato Multipart com o fieldname "photo"
+
 > Máximo 4 fotos
 
 ```TS
@@ -816,6 +819,7 @@ Possíveis erros
 Ativar anúncio da propriedade
 
 > Requer autenticação Bearer
+
 > Ao ativar um anúncio ele irá volta para a listagem total e individual
 
 ```TS
@@ -859,7 +863,8 @@ Possíveis erros
 Deletar anúncio da propriedade
 
 > Requer autenticação Bearer
-> O anúncio será excluido permanentemente
+
+> O anúncio será excluído permanentemente
 
 ```TS
 {
@@ -883,7 +888,7 @@ Possíveis erros
 
 ```JSON
 {
-	"message": "Missing headers authorization"
+  "message": "Missing headers authorization"
 }
 ```
 
@@ -891,7 +896,7 @@ Possíveis erros
 
 ```JSON
 {
-	"message": "Property not found"
+  "message": "Property not found"
 }
 ```
 
@@ -1139,7 +1144,7 @@ Retorno esperado - 200
 
 #### GET/properties/filter?
 
-Filtagram de anúncios
+Filtragem de anúncios
 
 > Possível de paginação Ex: ?page=2&limit=10
 
@@ -1321,7 +1326,7 @@ Possíveis erros
 
 ```JSON
 {
-	"message": "Missing headers authorization"
+  "message": "Missing headers authorization"
 }
 ```
 
@@ -1397,7 +1402,7 @@ Possíveis erros
 
 ```JSON
 {
-	"message": "Property not found"
+  "message": "Property not found"
 }
 ```
 
