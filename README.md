@@ -6,8 +6,7 @@
 
 ![api-webcasas](https://github.com/steinerstt/api-webcasas/assets/106714068/a3e33b9e-3a06-48f0-acac-3aa33b3d35af)
 
-> Api desenvolvida para a aplicação <a href="https://github.com/steinerstt/webcasas">webcasas</a>
-<br>
+> Api desenvolvida para a aplicação <a href="https://github.com/steinerstt/webcasas">webcasas</a> > <br>
 
 ## 🛠️ Algumas tecnologias
 
@@ -22,7 +21,7 @@
 - Bcrypt
 - Jsonwebtoken
 - Multer
-- Cloudinary 
+- Cloudinary
 
 ## 📌 Features
 
@@ -31,16 +30,16 @@
   - [x] Login de usuários
   - [x] Alterações de dados de cadastro e/ou foto de perfil
   - [x] Alteração de senha
-  - [x] Desativação de conta   
-  - [x] Ativação de conta   
-  - [x] Deleção de conta   
+  - [x] Desativação de conta
+  - [x] Ativação de conta
+  - [x] Deleção de conta
 - [x] Propriedades
   - [x] Anunciar propriedade
   - [x] Desativar/ativar anúncio de propriedade
-  - [x] Deletar anúncio de propriedade 
+  - [x] Deletar anúncio de propriedade
   - [x] Buscar as propriedades anunciadas recentemente
-  - [x] Buscar as propriedades em alta   
-  - [x] Buscar as propriedades de a cordo com os filtros passados   
+  - [x] Buscar as propriedades em alta
+  - [x] Buscar as propriedades de a cordo com os filtros passados
   - [x] Buscar propriedade por ID
   - [x] Buscar as propriedades (anunciadas) do usuário
 
@@ -83,11 +82,13 @@ $ yarn dev
 
 # 🔰 Url: https://api-ziti.onrender.com
 
-# 📋 Documentação
+## 📋 Documentação
 
-## Cadastro de usuário
+### Usuários
 
-### POST/users
+#### POST/users
+
+Cadastrar usuário
 
 body
 
@@ -95,9 +96,9 @@ body
 {
   "firstName": "Diogo",
   "lastName": "Steiner",
-  "username": "steiner",
-  "email": "steiner@mail.com",
-  "password": "123456"
+  "email": "steiner11@mail.com",
+  "password": "123456",
+  "confirmPassword": "123456"
 }
 ```
 
@@ -105,61 +106,62 @@ Retorno esperado - 201
 
 ```JSON
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODAxOTE4MTMsImV4cCI6MTY4MDQ1MTAxMywic3ViIjoiYjYyOTFkMzQtZWZhYS00N2JkLWJmZTgtMDAwYWJhNDllYzUwIn0.wCJur0yysNOFa0cwLhO4VxaW0lj7uNqNgnloT2twuEo",
-  "user": {
-    "id": "b6291d34-efaa-47bd-bfe8-000aba49ec50",
-    "firstName": "Diogo",
-    "lastName": "Steiner",
-    "username": "steiner",
-    "email": "steiner@mail.com",
-    "avatarUrl": null,
-    "coverUrl": null,
-    "updatedAt": "2023-03-30T15:56:53.315Z",
-    "createdAt": "2023-03-30T15:56:53.315Z"
-  }
+  "id": "4c5907ea-4e8f-489d-9688-bb0bb420130b",
+  "firstName": "Diogo",
+  "lastName": "Steiner",
+  "email": "steiner11@mail.com",
+  "avatarUrl": null,
+  "isActive": true,
+  "updatedAt": "2023-04-18T16:50:09.595Z",
+  "createdAt": "2023-04-18T16:50:09.595Z"
 }
 ```
+
 #
 
 Possíveis erros
 
 400
+
 ```JSON
 {
-  "message": [
-    "firstName is a required field",
-    "lastName is a required field",
-    "username is a required field",
-    "email is a required field",
-    "password is a required field"
+  "firstName": [
+    "Required"
+  ],
+  "lastName": [
+    "Required"
+  ],
+  "email": [
+    "Required"
+  ],
+  "password": [
+    "Required"
+  ],
+  "confirmPassword": [
+    "Required"
   ]
 }
 ```
-#
 
 409
+
 ```JSON
 {
   "message": "Email already registered"
 }
 ```
 
-```JSON
-{
-  "message": "Username already registered"
-}
-```
 #
 
-## Login de usuário
+#### POST/sessions
 
-### POST/sessions
+Iniciar sessão/login
 
 body
 
 ```JSON
 {
-  "username": "steiner",
+  "email": "steiner11@mail.com",
   "password": "123456"
 }
 ```
@@ -167,49 +169,65 @@ body
 Retorno esperado - 200
 
 ```JSOn
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Nzg4ODc1MzIsImV4cCI6MTY3OTE0NjczMiwic3ViIjoiMGUxMzFiZjgtNDA1MC00ZTllLWE5NDAtOTZhM2E5NjkxOGM3In0.Cs6dPrerHH4PGR9RmnAcZ7mpTyix6wyDxzAEAW864CI",
+  {
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODE4MzgzMzYsImV4cCI6MTY4MTkyNDczNiwic3ViIjoiNGM1OTA3ZWEtNGU4Zi00ODlkLTk2ODgtYmIwYmI0MjAxMzBiIn0.7n5YCwPwNWGmOb5CuPZxD9BSsaMOLaXz2BrAy5Kbgtc",
   "user": {
-    "id": "0e131bf8-4050-4e9e-a940-96a3a96918c7",
+    "id": "4c5907ea-4e8f-489d-9688-bb0bb420130b",
     "firstName": "Diogo",
     "lastName": "Steiner",
-    "username": "steinerstt",
-    "email": "steiner@mail.com",
+    "email": "steiner11@mail.com",
     "avatarUrl": null,
-    "coverUrl": null,
-    "updatedAt": "2023-03-14T17:38:16.966Z",
-    "createdAt": "2023-03-14T17:38:16.966Z"
+    "isActive": true,
+    "updatedAt": "2023-04-18T16:50:09.595Z",
+    "createdAt": "2023-04-18T16:50:09.595Z"
   }
-}
+  }
 ```
+
 #
 
 Possíveis erros
 
 400
+
 ```JSON
-{
-  "message": [
-    "username is a required field",
-    "password is a required field"
+ {
+  "email": [
+    "Required"
+  ],
+  "password": [
+    "Required"
   ]
 }
 ```
-#
 
 401
+
 ```JSON
 {
   "message": "Username or password invalid"
 }
 ```
+
+403
+
+```JSON
+{
+  "message": "User account desabled",
+  "user": {
+    "id": "4c5907ea-4e8f-489d-9688-bb0bb420130b",
+    "isActive": false
+  }
+}
+```
+
 #
 
-## Buscar sessão (auto login)
+#### GET/sessions
 
-### GET/sessions
+Buscar dados do usuário
 
-#### Requer autenticação Bearer
+> Requer autenticação Bearer
 
 ```TS
 {
@@ -223,34 +241,157 @@ Retorno esperado - 200
 
 ```JSOn
 {
-  "id": "0e131bf8-4050-4e9e-a940-96a3a96918c7",
+  "id": "bcf92420-24f8-47a7-8a86-a654f9dcddcc",
   "firstName": "Diogo",
   "lastName": "Steiner",
-  "username": "steinerstt",
-  "email": "steiner@mail.com",
+  "email": "steiner11@mail.com",
+  "avatarUrl": "https://res.cloudinary.com/ddx0hsa8o/image/upload/v1683019554/bec85eayh03ojsmd9h40.jpg",
+  "isActive": true,
+  "updatedAt": "2023-05-02T09:25:55.105Z",
+  "createdAt": "2023-05-02T09:21:48.311Z"
+}
+```
+
+#
+
+Possíveis errors
+
+401
+
+```JSON
+{
+  "message": "Missing headers authorization"
+}
+```
+
+#
+
+#### PATCH/users
+
+Atualizar dados do usuário
+
+> Requer autenticação Bearer
+
+> Pode ser alterado os seguintes dados: [firstName, lastName, email]
+
+```TS
+{
+  headers: {
+    "Authorization": `Bearer ${token}`
+  }
+}
+```
+
+body
+
+```JSON
+{
+  "firstName": "Diogo Alt",
+  "lastName": "Steiner Alt",
+  "email": "steiner11alt@mail.com"
+}
+```
+
+Retorno esperado - 200
+
+```JSON
+{
+  "id": "2658091e-2fb3-4f39-8efb-b83c47d80763",
+  "firstName": "Diogo Alt",
+  "lastName": "Steiner Alt",
+  "email": "steiner11alt@mail.com",
   "avatarUrl": null,
-  "coverUrl": null,
-  "updatedAt": "2023-03-14T17:38:16.966Z",
-  "createdAt": "2023-03-14T17:38:16.966Z"
+  "isActive": true,
+  "updatedAt": "2023-04-18T22:46:04.428Z",
+  "createdAt": "2023-04-18T22:40:01.833Z"
 }
 ```
+
 #
 
 Possíveis errors
 
 401
+
 ```JSON
 {
   "message": "Missing headers authorization"
 }
 ```
+
+409
+
+```JSON
+{
+    "message": "Email already registered"
+}
+```
+
 #
 
-## Criar postagem
+#### PATCH/users/avatar
 
-### POST/posts
+Adicionar/Atualiza foto de perfil
 
-#### Requer autenticação Bearer
+> Requer autenticação Bearer
+
+> Formulário no formato multpart com o fieldname "avatar"
+
+> Tamanho máximo da imagem 4mb
+
+> Tipos de imagens suportados: JPEG, JPG ou PNG
+
+```TS
+{
+  headers: {
+    "Authorization": `Bearer ${token}`
+  }
+}
+```
+
+Retorno esperado - 204
+
+```JSON
+
+```
+
+#
+
+Possíveis erros
+
+400
+
+```JSON
+{
+  "message": "File avatar is required"
+}
+```
+
+```JSON
+{
+  "message": "File too large"
+}
+```
+
+```JSON
+{
+  "message": "Unsupported file format"
+}
+```
+
+401
+
+```JSON
+{
+  "message": "Missing headers authorization"
+}
+```
+
+#
+
+#### PATCH//users/password
+
+> Requer autenticação Bearer
 
 ```TS
 {
@@ -264,60 +405,53 @@ body
 
 ```JSON
 {
-  "text": "Post criado por Steiner 1"
+	"currentPassword": "123456",
+	"newPassword": "12345678",
+	"confirmNewPassword": "12345678"
 }
 ```
+
 #
 
-Retorno esperado - 200
-
-```JSON
-{
-  "id": "c35ed078-7d8b-4f39-b6f1-0890f7e0561e",
-  "text": "Post criado por Steiner 1",
-  "updatedAt": "2023-03-17T20:32:11.264Z",
-  "createdAt": "2023-03-17T20:32:11.264Z",
-  "owner": {
-    "id": "0e131bf8-4050-4e9e-a940-96a3a96918c7",
-    "firstName": "Diogo",
-    "lastName": "Steiner",
-    "username": "steinerstt",
-    "avatarUrl": "https://qph.cf2.quoracdn.net/main-qimg-abe63e7d84cdb85ce8bf23ad45d18dae.webp",
-    "coverUrl": null
-  },
-  "comments": [],
-  "likes": [],
-  "favorites": []
-}
-```
-#
-
-Possíveis errors
+Possíveis erros
 
 400
+
 ```JSON
 {
-  "message": [
-    "text is a required field"
+  "currentPassword": [
+    "Required"
+  ],
+  "newPassword": [
+    "Required"
+  ],
+  "confirmNewPassword": [
+    "Required"
   ]
 }
 ```
-> Mínimo 1 caracter máximo 20.000 caracteres
 
-#
 401
+
 ```JSON
 {
   "message": "Missing headers authorization"
 }
 ```
-#
 
-## Deletar postagem
+403
 
-### DELETE/posts
+```JSON
+{
+  "message": "Password invalid"
+}
+```
 
-#### Requer autenticação Bearer
+#### DELETE/users
+
+Deletar conta de usuário
+
+> Requer autenticação Bearer
 
 ```TS
 {
@@ -330,493 +464,46 @@ Possíveis errors
 Retorno esperado - 204
 
 ```JSON
+
 ```
 
-#
-
-Possíveis erros
-
-401
-```JSON
-{
-  "message": "Missing headers authorization"
-}
-```
-```JSON
-{
-  "message": "It is not allowed to delete another user's post without admin permission"
-}
-```
-#
-
-404
-```JSON
-{
-  "message": "Post not found"
-}
-```
-
-
-## Buscar postagem
-
-### GET/posts
-
-#### Requer autenticação Bearer
-
-```TS
-{
-  headers: {
-    "Authorization": `Bearer ${token}`
-  }
-}
-```
-
-Retorno esperado - 201
-
-```JSON
-[
-  {
-    "id": "b36131bb-e97d-4d4c-8dae-442ac416153b",
-    "text": "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus",
-    "updatedAt": "2023-03-30T16:16:05.956Z",
-    "createdAt": "2023-03-30T16:16:05.956Z",
-    "owner": {
-      "id": "598701fe-bfa8-41b7-8ab3-4f78b3af25c4",
-      "firstName": "Pedro",
-      "lastName": "Gouveia",
-      "username": "pedrogouveia",
-      "avatarUrl": null,
-      "coverUrl": null
-    },
-    "likes": [],
-    "comments": [],
-    "favorites": []
-  },
-  {
-    "id": "97d72896-8b14-476d-b074-b7bb0e88ae3a",
-    "text": "Post criado por Steiner 1",
-    "updatedAt": "2023-03-30T16:04:34.659Z",
-    "createdAt": "2023-03-30T16:04:34.659Z",
-    "owner": {
-      "id": "b6291d34-efaa-47bd-bfe8-000aba49ec50",
-      "firstName": "Diogo",
-      "lastName": "Steiner",
-      "username": "steiner",
-      "avatarUrl": null,
-      "coverUrl": null
-    },
-    "likes": [
-      {
-        "id": "c5f1c5e1-f043-493f-a1c8-eb122815902c",
-        "owner": {
-          "id": "b6291d34-efaa-47bd-bfe8-000aba49ec50",
-          "firstName": "Diogo",
-          "lastName": "Steiner",
-          "username": "steiner",
-          "avatarUrl": null,
-          "coverUrl": null
-        }
-      },
-      {
-        "id": "cc5ff107-50c5-4e62-92b4-52fe1e56fb98",
-        "owner": {
-          "id": "fe9a39e8-33da-4bed-822c-679e40b6ac58",
-          "firstName": "Amanda",
-          "lastName": "Silva",
-          "username": "amandasilva",
-          "avatarUrl": null,
-          "coverUrl": null
-        }
-      },
-      {
-        "id": "3a03dcc3-5d5d-410d-90a7-72ddebd6086f",
-        "owner": {
-          "id": "d28e0837-97c7-46e6-93f4-d4c14f4cd048",
-          "firstName": "Gabriel",
-          "lastName": "koll",
-          "username": "gabrielkoll",
-          "avatarUrl": null,
-          "coverUrl": null
-        }
-      }
-    ],
-    "comments": [],
-    "favorites": [
-      {
-        "id": "d4c1a25f-2d65-4350-bdac-8b29282aec75",
-        "owner": {
-          "id": "598701fe-bfa8-41b7-8ab3-4f78b3af25c4",
-          "firstName": "Pedro",
-          "lastName": "Gouveia",
-          "username": "pedrogouveia",
-          "avatarUrl": null,
-          "coverUrl": null
-        }
-      },
-      {
-        "id": "0e9e7e5c-adba-4305-877e-23703d4375f7",
-        "owner": {
-          "id": "d28e0837-97c7-46e6-93f4-d4c14f4cd048",
-          "firstName": "Gabriel",
-          "lastName": "koll",
-          "username": "gabrielkoll",
-          "avatarUrl": null,
-          "coverUrl": null
-        }
-      },
-      {
-        "id": "6295f8f8-6252-45ca-89b2-0b0a6293825b",
-        "owner": {
-          "id": "fe9a39e8-33da-4bed-822c-679e40b6ac58",
-          "firstName": "Amanda",
-          "lastName": "Silva",
-          "username": "amandasilva",
-          "avatarUrl": null,
-          "coverUrl": null
-        }
-      }
-    ]
-  }
-]
-```
-#
-
-Possíveis erros
-
-401
-```JSON
-{
-  "message": "Missing headers authorization"
-}
-```
-
-## Curtir postagem
-
-### POST/posts/likes{postId}
-
-#### Requer autenticação Bearer
-
-```TS
-{
-  headers: {
-    "Authorization": `Bearer ${token}`
-  }
-}
-```
-
-Retorno esperado - 200
-
-```JSON
-{
-  "id": "cc5ff107-50c5-4e62-92b4-52fe1e56fb98",
-  "post": {
-    "id": "97d72896-8b14-476d-b074-b7bb0e88ae3a",
-    "text": "Post criado por Steiner 1",
-    "updatedAt": "2023-03-30T16:04:34.659Z",
-    "createdAt": "2023-03-30T16:04:34.659Z"
-  },
-  "owner": {
-    "id": "fe9a39e8-33da-4bed-822c-679e40b6ac58",
-    "firstName": "Amanda",
-    "lastName": "Silva",
-    "username": "amandasilva",
-    "avatarUrl": null,
-    "coverUrl": null
-  }
-}
-```
-#
-
-Possíveis erros
-
-401
-```JSON
-{
-  "message": "Missing headers authorization"
-}
-```
-#
-
-404
-```JSON
-{
-  "message": "Post not found"
-}
-```
-#
-
-409
-```JSON
-{
-	"message": "Post already liked"
-}
-```
-
-## Remover curtida da postagem
-
-### DELETE/posts/likes/{likeId}
-
-#### Requer autenticação Bearer
-
-```TS
-{
-  headers: {
-    "Authorization": `Bearer ${token}`
-  }
-}
-```
-
-Retorno esperado - 204
-
-```JSON
-```
-
-#
-
-Possíveis erros
-
-401
-```JSON
-{
-  "message": "Missing headers authorization"
-}
-```
-#
-404
-```JSON
-{
-  "message": "Like not found"
-}
-```
-
-## Adicionar comentário em postagem
-
-### POST/posts/comments/{postId}
-
-#### Requer autenticação Bearer
-
-```TS
-{
-  headers: {
-    "Authorization": `Bearer ${token}`
-  }
-}
-```
-
-body
-```JSON
-{
-  "text": "It is a long established fact that a reader will be distracted by the readable content"
-}
-```
-
-Retorno esperado - 201
-
-```JSON
-{
-  "id": "ed649f71-2698-4510-bbe7-74fca45cb2a8",
-  "text": "Comentário no post",
-  "updatedAt": "2023-03-17T20:41:05.637Z",
-  "createdAt": "2023-03-17T20:41:05.637Z",
-  "post": {
-    "id": "d23ac0a1-ca0c-4d2c-9d32-3df2a65d0f97",
-    "text": "post criado pela amanda",
-    "updatedAt": "2023-03-17T11:53:27.361Z",
-    "createdAt": "2023-03-17T11:53:27.361Z"
-  },
-  "owner": {
-    "id": "0e131bf8-4050-4e9e-a940-96a3a96918c7",
-    "firstName": "Diogo",
-    "lastName": "Steiner",
-    "username": "steinerstt",
-    "avatarUrl": "https://qph.cf2.quoracdn.net/main-qimg-abe63e7d84cdb85ce8bf23ad45d18dae.webp",
-    "coverUrl": null
-  }
-}
-```
 #
 
 Possíveis erros
 
 400
+
 ```JSON
-  {
-  "message": [
-    "text is a required field"
+{
+  "password": [
+    "Required"
   ]
 }
 ```
-#
 
 401
+
 ```JSON
 {
   "message": "Missing headers authorization"
 }
 ```
-#
 
-404
-```JSON
-{
-  "message": "Post not found"
-}
-```
-
-## Excluir comentário de postagem
-
-### DELETE/posts/comments/{commentId}
-
-#### Requer autenticação Bearer
-
-```TS
-{
-  headers: {
-    "Authorization": `Bearer ${token}`
-  }
-}
-```
-
-Retorno esperado - 204
+403
 
 ```JSON
-
+{
+  "message": "Password invalid"
+}
 ```
 
 #
 
-Possíveis erros
+#### PATCH/users/deactivate
 
-401
-```JSON
-{
-  "message": "Missing headers authorization"
-}
-```
-```JSON
-{
-  "message": "It is not allowed to delete another user's comment without admin permission"
-}
-```
-#
+Desativar conta de usuário
 
-404
-```JSON
-{
-  "message": "Comment not found"
-}
-```
-
-## Adicionar postagem aos favoritos
-
-### POST/posts/favorites/{postId}
-
-#### Requer autenticação Bearer
-
-```TS
-{
-  headers: {
-    "Authorization": `Bearer ${token}`
-  }
-}
-```
-
-retorno esperado - 201
-
-```JSON
-{
-  "id": "99112c9a-69c9-4857-b9d8-124fc1ce09f4",
-  "post": {
-    "id": "6da62703-a571-4ef7-8692-0f3845c5d714",
-    "text": "Post criado por steiner 1",
-    "updatedAt": "2023-03-14T17:38:52.334Z",
-    "createdAt": "2023-03-14T17:38:52.334Z"
-  },
-  "owner": {
-    "id": "0e131bf8-4050-4e9e-a940-96a3a96918c7",
-    "firstName": "Diogo",
-    "lastName": "Steiner",
-    "username": "steinerstt",
-    "avatarUrl": "https://qph.cf2.quoracdn.net/main-qimg-abe63e7d84cdb85ce8bf23ad45d18dae.webp",
-    "coverUrl": null,
-  }
-}
-```
-#
-
-Possíveis erros
-
-401
-```JSON
-{
-  "message": "Missing headers authorization"
-}
-```
-#
-
-404
-```JSON
-{
-  "message": "Post not found"
-}
-```
-#
-
-409
-```JSON
-{
-  "message": "Post already favorited"
-}
-```
-
-## Remover postagem dos favoritos
-
-### DELETE/posts/favorites/{favoriteId}
-
-#### Requer autenticação Bearer
-
-```TS
-{
-  headers: {
-    "Authorization": `Bearer ${token}`
-  }
-}
-```
-
-Retorno esperado - 204
-```JSON
-
-```
-
-#
-
-Possíveis erros
-
-401
-```JSON
-{
-  "message": "Missing headers authorization"
-}
-```
-```JSON
-{
-  "message": "It is not possible remove post favorite of another user without admin permission"
-}
-```
-#
-
-404
-```JSON
-{
-  "message": "Post favorited not found"
-}
-```
-
-## Buscar postagens favoritadas
-
-### GET/posts/favorites
-
-#### Requer autenticação Bearer
+> Requer autenticação Bearer
 
 ```TS
 {
@@ -827,94 +514,11 @@ Possíveis erros
 ```
 
 Retorno esperado - 200
+
 ```JSON
-[
-  {
-    "id": "97d72896-8b14-476d-b074-b7bb0e88ae3a",
-    "text": "Post criado por Steiner 1",
-    "updatedAt": "2023-03-30T16:04:34.659Z",
-    "createdAt": "2023-03-30T16:04:34.659Z",
-    "owner": {
-      "id": "b6291d34-efaa-47bd-bfe8-000aba49ec50",
-      "firstName": "Diogo",
-      "lastName": "Steiner",
-      "username": "steiner",
-      "avatarUrl": null,
-      "coverUrl": null
-    },
-    "likes": [
-      {
-        "id": "3a03dcc3-5d5d-410d-90a7-72ddebd6086f",
-        "owner": {
-          "id": "d28e0837-97c7-46e6-93f4-d4c14f4cd048",
-          "firstName": "Gabriel",
-          "lastName": "koll",
-          "username": "gabrielkoll",
-          "avatarUrl": null,
-          "coverUrl": null
-        }
-      },
-      {
-        "id": "cc5ff107-50c5-4e62-92b4-52fe1e56fb98",
-        "owner": {
-          "id": "fe9a39e8-33da-4bed-822c-679e40b6ac58",
-          "firstName": "Amanda",
-          "lastName": "Silva",
-          "username": "amandasilva",
-          "avatarUrl": null,
-          "coverUrl": null
-        }
-      },
-      {
-        "id": "c5f1c5e1-f043-493f-a1c8-eb122815902c",
-        "owner": {
-          "id": "b6291d34-efaa-47bd-bfe8-000aba49ec50",
-          "firstName": "Diogo",
-          "lastName": "Steiner",
-          "username": "steiner",
-          "avatarUrl": null,
-          "coverUrl": null
-        }
-      }
-    ],
-    "comments": [],
-    "favorites": [
-      {
-        "id": "d4c1a25f-2d65-4350-bdac-8b29282aec75",
-        "owner": {
-          "id": "598701fe-bfa8-41b7-8ab3-4f78b3af25c4",
-          "firstName": "Pedro",
-          "lastName": "Gouveia",
-          "username": "pedrogouveia",
-          "avatarUrl": null,
-          "coverUrl": null
-        }
-      },
-      {
-        "id": "6295f8f8-6252-45ca-89b2-0b0a6293825b",
-        "owner": {
-          "id": "fe9a39e8-33da-4bed-822c-679e40b6ac58",
-          "firstName": "Amanda",
-          "lastName": "Silva",
-          "username": "amandasilva",
-          "avatarUrl": null,
-          "coverUrl": null
-        }
-      },
-      {
-        "id": "0e9e7e5c-adba-4305-877e-23703d4375f7",
-        "owner": {
-          "id": "d28e0837-97c7-46e6-93f4-d4c14f4cd048",
-          "firstName": "Gabriel",
-          "lastName": "koll",
-          "username": "gabrielkoll",
-          "avatarUrl": null,
-          "coverUrl": null
-        }
-      }
-    ]
-  },
-]
+{
+  "message": "User account deativate sucess"
+}
 ```
 
 #
@@ -922,84 +526,254 @@ Retorno esperado - 200
 Possíveis erros
 
 401
+
 ```JSON
 {
   "message": "Missing headers authorization"
 }
 ```
 
-## Seguir usuário
+#
 
-### POST/followers/{userForFollowId}
+#### PATCH/users/activate/{userId}
 
-#### Requer autenticação Bearer
+Ativar conta de usuário
 
-```TS
-{
-  headers: {
-    "Authorization": `Bearer ${token}`
-  }
-}
-```
-Retorno esperado - 201
+Retorno esperado - 200
 
 ```JSON
 {
-  "id": "5c003cb2-6358-496d-9fc1-4c90cd573bb6",
-  "following": {
-    "id": "ed9fc8d4-399b-4fca-a11f-971320ff8aa8",
-    "firstName": "Isabella",
-    "lastName": "Show",
-    "username": "isabellashow",
-    "avatarUrl": null,
-    "coverUrl": null,
-    "updatedAt": "2023-03-30T16:01:07.227Z",
-    "createdAt": "2023-03-30T16:01:07.227Z"
-  },
-  "follower": {
-    "id": "b6291d34-efaa-47bd-bfe8-000aba49ec50",
-    "firstName": "Diogo",
-    "lastName": "Steiner",
-    "username": "steiner",
-    "avatarUrl": null,
-    "coverUrl": null,
-    "updatedAt": "2023-03-30T15:56:53.315Z",
-    "createdAt": "2023-03-30T15:56:53.315Z"
-  }
+  "message": "user account activate sucess"
 }
 ```
+
 #
 
 Possíveis erros
-
-401
-```JSON
-{
-  "message": "Missing headers authorization"
-}
-```
-#
 
 404
+
 ```JSON
 {
   "message": "User not found"
 }
 ```
-#
 
-409
-```JSON
+---
+
+### Propriedades
+
+#### POST/properties
+
+Criação de anúncio da propriedade
+
+> Requer autenticação Bearer
+
+> Chaves opcionais:
+> "isSale" | "isInCondo" | "hasPoolProperty" | "hasAirConditioningProperty" | "hasGrillProperty" | "hasFurnitureProperty" | "hasPollCondo" | "hasSecurity24hCondo" "hasGymCondo" | "hasPartyHallCondo" | "priceCondo" | "isCondoPriceIncluded" | "isDisplayContact"
+
+```TS
 {
-  "message": "User is already followed"
+  headers: {
+    "Authorization": `Bearer ${token}`
+  }
 }
 ```
 
-## Parar de seguir um usuário
+body básico
 
-### DELETE/followers/{followId}
+```JSON
+{
+  "title": "Título",
+  "description": "Descrição",
+  "numberRooms": 4,
+  "numberBathrooms": 3,
+  "numberGarage": 8,
+  "propertyType": "Casa",
+  "price": "2198311",
+  "state": "Rio de Janeiro",
+  "city": "Rio de Janeiro",
+  "contact": "(21) 9 8888-9999"
+}
+```
 
-#### Requer autenticação Bearer
+body Completo
+
+```JSON
+{
+	"title": "Título",
+	"description": "Descrição",
+	"numberRooms": 4,
+	"numberBathrooms": 3,
+	"numberGarage": 8,
+	"propertyType": "Apartamento",
+	"isSale": false,
+	"isInCondo": true,
+	"hasPoolProperty": true,
+	"hasAirConditioningProperty": true,
+	"hasGrillProperty": false,
+	"hasFurnitureProperty": false,
+	"hasPollCondo": true,
+	"hasSecurity24hCondo": true,
+	"hasGymCondo": false,
+	"hasPartyHallCondo": false,
+	"price": "2198311",
+	"priceCondo": "4000",
+	"isCondoPriceIncluded": true,
+	"state": "São Paulo",
+	"city": "São Paulo",
+	"contact": "(21) 9 8888-9999",
+	"isDisplayContact": false
+}
+```
+
+Retorno esperado
+
+201
+
+```JSON
+{
+  "id": "2a0cc022-a4f6-48e1-ba6f-1bfd8a615a47",
+  "title": "Título",
+  "description": "Descrição",
+  "numberRooms": 4,
+  "numberBathrooms": 3,
+  "numberGarage": 8,
+  "propertyType": "Casa",
+  "isSale": true,
+  "isInCondo": true,
+  "hasPoolProperty": true,
+  "hasAirConditioningProperty": true,
+  "hasGrillProperty": true,
+  "hasFurnitureProperty": false,
+  "hasPollCondo": true,
+  "hasSecurity24hCondo": true,
+  "hasGymCondo": false,
+  "hasPartyHallCondo": false,
+  "price": 2198311,
+  "priceCondo": 4000,
+  "isCondoPriceIncluded": true,
+  "state": "Rio de Janeiro",
+  "city": "Rio de Janeiro",
+  "contact": "21988889999",
+  "isDisplayContact": false,
+  "isActive": true,
+  "viewsCounter": 0,
+  "updatedAt": "2023-04-21T18:32:52.772Z",
+  "createdAt": "2023-04-21T18:32:52.772Z"
+}
+```
+
+#
+
+Possíveis erros
+
+400
+
+```JSON
+{
+  "title": [
+    "Required"
+  ],
+  "description": [
+    "Required"
+  ],
+  "numberRooms": [
+    "Required"
+  ],
+  "numberBathrooms": [
+    "Required"
+  ],
+  "numberGarage": [
+    "Required"
+  ],
+  "propertyType": [
+    "Required"
+  ],
+  "price": [
+    "Required"
+  ],
+  "state": [
+    "Required"
+  ],
+  "city": [
+    "Required"
+  ],
+  "contact": [
+    "Required"
+  ]
+}
+```
+
+401
+
+```JSON
+{
+	"message": "Missing headers authorization"
+}
+```
+
+#
+
+#### POST/properties/photos/{propertyId}
+
+Adicionar fotos da propriedade
+
+> Requer autenticação Bearer
+> Formulário no formato Multipart com o fieldname "photo"
+> Máximo 4 fotos
+
+```TS
+{
+  headers: {
+    "Authorization": `Bearer ${token}`
+  }
+}
+```
+
+Retorno esperado - 201
+
+```JSON
+  "count": `${quantidade de fotos adicionadas}`
+```
+
+#
+
+Possíveis erros
+
+401
+
+```JSON
+{
+  "message": "Missing headers authorization"
+}
+```
+
+403
+
+```JSON
+{
+  "message": "The property has already reached the maximum number of photos"
+}
+```
+
+404
+
+```JSON
+{
+  "message": "Property not found"
+}
+```
+
+#
+
+#### PATCH/properties/deactivate/{propertyId}
+
+Desativar anúncio da propriedade
+
+> Requer autenticação Bearer
+
+> Ao desativar um anúncio ele irá desaparececr da listagem total e individual, mas será possível encontrar ele na listagem dos anúncios do vendedor.
 
 ```TS
 {
@@ -1010,30 +784,39 @@ Possíveis erros
 ```
 
 Retorno esperado - 204
+
 ```JSON
 
 ```
+
 #
 
 Possíveis erros
 
 401
+
 ```JSON
 {
   "message": "Missing headers authorization"
 }
 ```
+
+404
+
 ```JSON
 {
-  "message": "It is not possible to remove another user's follower without an admin's permission"
+  "message": "Property not found"
 }
 ```
 
-## Sugestões de pessoas para serem seguidas
+#
 
-### GET/followers/suggestions?page=1&limit=4
+### PATCH/properties/activate/{propertyId}
 
-#### Requer autenticação Bearer
+Ativar anúncio da propriedade
+
+> Requer autenticação Bearer
+> Ao ativar um anúncio ele irá volta para a listagem total e individual
 
 ```TS
 {
@@ -1043,52 +826,488 @@ Possíveis erros
 }
 ```
 
-Retorno esperado - 200
+Retorno esperado - 204
+
+```JSON
+
+```
+
+#
+
+Possíveis erros
+
+401
+
 ```JSON
 {
-  "next": "http://localhost:3001/followers/suggestions?page=2&limit=4",
-  "prev": null,
-  "count": 4,
+  "message": "Missing headers authorization"
+}
+```
+
+404
+
+```JSON
+{
+  "message": "Property not found"
+}
+```
+
+#
+
+#### DELETE/properties/{propertyId}
+
+Deletar anúncio da propriedade
+
+> Requer autenticação Bearer
+> O anúncio será excluido permanentemente
+
+```TS
+{
+  headers: {
+    "Authorization": `Bearer ${token}`
+  }
+}
+```
+
+Retorno esperado - 204
+
+```JSON
+
+```
+
+#
+
+Possíveis erros
+
+401
+
+```JSON
+{
+	"message": "Missing headers authorization"
+}
+```
+
+404
+
+```JSON
+{
+	"message": "Property not found"
+}
+```
+
+#
+
+#### GET/properties
+
+Buscar todos os anúncios recentes
+
+> Possível de paginação Ex: ?page=2&limit=10
+
+Retorno esperado - 200
+
+```JSON
+{
+  "nextPage": null,
+  "prevPage": null,
+  "count": 39,
   "content": [
     {
-      "id": "e22cc943-7d77-4f01-a2e2-f5f1f25e15d2",
-      "firstName": "Carlos",
-      "lastName": "Pereira",
-      "username": "carlospereira",
-      "avatarUrl": null,
-      "coverUrl": null,
-      "updatedAt": "2023-03-15T13:33:51.264Z",
-      "createdAt": "2023-03-15T13:33:51.264Z"
+      "id": "b784451a-aae2-4160-b047-bbe413fec771",
+      "title": "Título",
+      "description": "Descrição",
+      "numberRooms": 4,
+      "numberBathrooms": 3,
+      "numberGarage": 8,
+      "propertyType": "Apartamento",
+      "isSale": true,
+      "isInCondo": true,
+      "hasPoolProperty": true,
+      "hasAirConditioningProperty": true,
+      "hasGrillProperty": true,
+      "hasFurnitureProperty": false,
+      "hasPollCondo": true,
+      "hasSecurity24hCondo": true,
+      "hasGymCondo": false,
+      "hasPartyHallCondo": false,
+      "price": 2198311,
+      "priceCondo": 4000,
+      "isCondoPriceIncluded": true,
+      "state": "São Paulo",
+      "city": "São Paulo",
+      "isDisplayContact": false,
+      "isActive": true,
+      "viewsCounter": 0,
+      "updatedAt": "2023-04-22T19:40:57.348Z",
+      "createdAt": "2023-04-22T19:40:57.348Z",
+      "photos": []
     },
     {
-      "id": "72cad746-a785-4d84-aa95-cdfd503ee980",
-      "firstName": "Amanda",
-      "lastName": "Silva",
-      "username": "amandasilva",
-      "avatarUrl": null,
-      "coverUrl": null,
-      "updatedAt": "2023-03-15T13:38:43.498Z",
-      "createdAt": "2023-03-15T13:38:43.498Z"
+      "id": "f599f891-55c4-48d9-ad4b-711ab4014d0c",
+      "title": "Título",
+      "description": "Descrição",
+      "numberRooms": 4,
+      "numberBathrooms": 3,
+      "numberGarage": 8,
+      "propertyType": "Casa",
+      "isSale": true,
+      "isInCondo": true,
+      "hasPoolProperty": true,
+      "hasAirConditioningProperty": true,
+      "hasGrillProperty": true,
+      "hasFurnitureProperty": false,
+      "hasPollCondo": true,
+      "hasSecurity24hCondo": true,
+      "hasGymCondo": false,
+      "hasPartyHallCondo": false,
+      "price": 2198311,
+      "priceCondo": 4000,
+      "isCondoPriceIncluded": true,
+      "state": "São Paulo",
+      "city": "São Paulo",
+      "isDisplayContact": false,
+      "isActive": true,
+      "viewsCounter": 0,
+      "updatedAt": "2023-04-22T19:38:23.703Z",
+      "createdAt": "2023-04-22T19:38:23.703Z",
+      "photos": []
     },
     {
-      "id": "2c43364c-5769-4e33-8c16-a4ab193cc6ce",
-      "firstName": "Diogo",
-      "lastName": "Steiner",
-      "username": "steinerstts",
-      "avatarUrl": null,
-      "coverUrl": null,
-      "updatedAt": "2023-03-15T13:50:42.254Z",
-      "createdAt": "2023-03-15T13:50:42.254Z"
+      "id": "5dae7d8d-9c88-4a30-b3c8-283a599a2f66",
+      "title": "Título",
+      "description": "Descrição",
+      "numberRooms": 4,
+      "numberBathrooms": 3,
+      "numberGarage": 8,
+      "propertyType": "Casa",
+      "isSale": true,
+      "isInCondo": true,
+      "hasPoolProperty": true,
+      "hasAirConditioningProperty": true,
+      "hasGrillProperty": true,
+      "hasFurnitureProperty": false,
+      "hasPollCondo": true,
+      "hasSecurity24hCondo": true,
+      "hasGymCondo": false,
+      "hasPartyHallCondo": false,
+      "price": 2198311,
+      "priceCondo": 4000,
+      "isCondoPriceIncluded": true,
+      "state": "São Paulo",
+      "city": "Rio de Janeiro",
+      "isDisplayContact": false,
+      "isActive": true,
+      "viewsCounter": 0,
+      "updatedAt": "2023-04-22T19:32:00.188Z",
+      "createdAt": "2023-04-22T19:32:00.188Z",
+      "photos": []
+    },
+  ]
+}
+```
+
+#
+
+#### GET/properties/inHight
+
+Buscar todos os anúncios em alta (maior visualização)
+
+> Possível de paginação Ex: ?page=2&limit=10
+
+Retorno esperado - 200
+
+```JSON
+{
+  "nextPage": null,
+  "prevPage": null,
+  "count": 39,
+  "content": [
+    {
+      "id": "80145b27-4d9d-48f1-a527-bb13ae540b2a",
+      "title": "Título",
+      "description": "Descrição",
+      "numberRooms": 4,
+      "numberBathrooms": 3,
+      "numberGarage": 8,
+      "propertyType": "Casa",
+      "isSale": true,
+      "isInCondo": true,
+      "hasPoolProperty": true,
+      "hasAirConditioningProperty": true,
+      "hasGrillProperty": true,
+      "hasFurnitureProperty": false,
+      "hasPollCondo": true,
+      "hasSecurity24hCondo": true,
+      "hasGymCondo": false,
+      "hasPartyHallCondo": false,
+      "price": 2198311,
+      "priceCondo": 4000,
+      "isCondoPriceIncluded": true,
+      "state": "Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "isDisplayContact": false,
+      "isActive": true,
+      "viewsCounter": 47,
+      "updatedAt": "2023-04-23T11:53:47.099Z",
+      "createdAt": "2023-04-21T23:36:17.424Z",
+      "photos": [
+        {
+          "id": "9e3ce3ee-3a92-4e51-ba23-ebe5ab53c72a",
+          "photoUrl": "https://res.cloudinary.com/dhomn9ckx/image/upload/v1682120414/phpwohqbsrvxzvlwandp.jpg"
+        },
+        {
+          "id": "8fd82bf8-7dba-484d-9dbd-d4bd9d7462d5",
+          "photoUrl": "https://res.cloudinary.com/dhomn9ckx/image/upload/v1682120415/dz4vqlnychoqjrovmhcr.jpg"
+        },
+        {
+          "id": "62d8089d-22ca-4a06-a06d-a539f06b2a1f",
+          "photoUrl": "https://res.cloudinary.com/dhomn9ckx/image/upload/v1682120415/hrgfgbx5kkbs1f0lfdlv.jpg"
+        },
+        {
+          "id": "0e387dc4-96e7-4adb-ba83-8437ce1bb976",
+          "photoUrl": "https://res.cloudinary.com/dhomn9ckx/image/upload/v1682120415/ytwq3dmfuokaoelvo7to.jpg"
+        }
+      ]
     },
     {
-      "id": "0a94e22f-71dd-495e-b80f-aa5be27a8745",
-      "firstName": "Nikolle",
-      "lastName": "Pereira",
-      "username": "nikollepereira",
-      "avatarUrl": null,
-      "coverUrl": null,
-      "updatedAt": "2023-03-16T10:30:34.044Z",
-      "createdAt": "2023-03-16T10:30:34.044Z"
+      "id": "9913f7df-46a5-4a64-8358-cbca8bd18b83",
+      "title": "Título",
+      "description": "Descr1",
+      "numberRooms": 4,
+      "numberBathrooms": 3,
+      "numberGarage": 8,
+      "propertyType": "Casa",
+      "isSale": true,
+      "isInCondo": false,
+      "hasPoolProperty": false,
+      "hasAirConditioningProperty": false,
+      "hasGrillProperty": false,
+      "hasFurnitureProperty": false,
+      "hasPollCondo": false,
+      "hasSecurity24hCondo": false,
+      "hasGymCondo": false,
+      "hasPartyHallCondo": false,
+      "price": 2198311,
+      "priceCondo": null,
+      "isCondoPriceIncluded": false,
+      "state": "RIo de Janeiro",
+      "city": "Rio de Janeiro",
+      "isDisplayContact": true,
+      "isActive": true,
+      "viewsCounter": 9,
+      "updatedAt": "2023-04-23T11:53:36.771Z",
+      "createdAt": "2023-04-21T17:03:03.117Z",
+      "photos": [],
+      "contact": "21988889999"
+      },
+    {
+      "id": "05f440a0-d827-486b-a8a7-8715c57dd4bf",
+      "title": "Título",
+      "description": "Descr1",
+      "numberRooms": 4,
+      "numberBathrooms": 3,
+      "numberGarage": 8,
+      "propertyType": "Casa",
+      "isSale": true,
+      "isInCondo": false,
+      "hasPoolProperty": false,
+      "hasAirConditioningProperty": false,
+      "hasGrillProperty": false,
+      "hasFurnitureProperty": false,
+      "hasPollCondo": false,
+      "hasSecurity24hCondo": false,
+      "hasGymCondo": false,
+      "hasPartyHallCondo": false,
+      "price": 2198311,
+      "priceCondo": null,
+      "isCondoPriceIncluded": false,
+      "state": "RIo de Janeiro",
+      "city": "Rio de Janeiro",
+      "isDisplayContact": true,
+      "isActive": true,
+      "viewsCounter": 1,
+      "updatedAt": "2023-04-22T19:04:12.347Z",
+      "createdAt": "2023-04-21T17:01:06.296Z",
+      "photos": [],
+      "contact": "21988889999"
+    },
+...
+  ]
+}
+```
+
+#
+
+#### GET/properties/filter?
+
+Filtagram de anúncios
+
+> Possível de paginação Ex: ?page=2&limit=10
+
+- [x] É possível filtar os anúncios com as seguintes querys
+  - [x] state=state
+  - [x] city=city
+  - [x] propertyType=propertyType
+  - [x] isSale= true || false
+  - [x] isInCondo= true || false
+  - [x] hasPoolProperty= true || false
+  - [x] hasFurnitureProperty= true || false
+  - [x] hasGrillProperty= true || false
+  - [x] hasAirConditioningProperty= true || false
+
+> Exemplo de filtragem avançada:
+
+> properties/filter?state=São Paulo&city=São paulo&propertyType=apartamento&isSale=false&isInCondo=true&hasPoolProperty=true&hasFurnitureProperty=false&hasAirConditioningProperty=true&hasGrillProperty=false
+
+Retorno esperado - 200
+
+```JSON
+{
+  "nextPage": null,
+  "prevPage": null,
+  "count": 1,
+  "content": [
+    {
+      "id": "f7734346-257f-450c-aa6a-76c9a31c4a6d",
+      "title": "Título",
+      "description": "Descrição",
+      "numberRooms": 4,
+      "numberBathrooms": 3,
+      "numberGarage": 8,
+      "propertyType": "Apartamento",
+      "isSale": false,
+      "isInCondo": true,
+      "hasPoolProperty": true,
+      "hasAirConditioningProperty": true,
+      "hasGrillProperty": false,
+      "hasFurnitureProperty": false,
+      "hasPollCondo": true,
+      "hasSecurity24hCondo": true,
+      "hasGymCondo": false,
+      "hasPartyHallCondo": false,
+      "price": 2198311,
+      "priceCondo": 4000,
+      "isCondoPriceIncluded": true,
+      "state": "São Paulo",
+      "city": "São Paulo",
+      "isDisplayContact": false,
+      "isActive": true,
+      "viewsCounter": 0,
+      "updatedAt": "2023-04-23T15:03:12.637Z",
+      "createdAt": "2023-04-23T15:03:12.637Z",
+      "photos": []
+    }
+  ]
+}
+```
+
+#
+
+#### GET/properties/user
+
+Buscas todos os anúncios do usuário
+
+> Requer autenticação Bearer
+
+```TS
+{
+  headers: {
+    "Authorization": `Bearer ${token}`
+  }
+}
+```
+
+> Possível de paginação Ex: ?page=2&limit=10
+
+Retorno esperado - 200
+
+```JSON
+{
+  "nextPage": "http://localhost:3001/properties?page=3&limit=2",
+  "prevPage": "http://localhost:3001/properties?page=1&limit=2",
+  "count": 2,
+  "content": [
+    {
+      "id": "5d9ae18a-5311-423c-b936-b0350ff9cca5",
+      "title": "Casa com 2 dormitórios para alugar, 188 m² por R$ 5.500,01/mês",
+      "description": "Casa com 02 dormitórios para locação Boqueirão - Santos/SP Ref.: CA1777Casa estilo sobrado com área total 214m2 bairro do Boqueirão em SantosImóvel com dois dormitórios, 02 salas, varanda para a rua, cozinha ampla, banheiro social, lavanderia, um bom quintal com edícula com dormitório e banheiro e mais um banheiro no térreo. (salas, dormitórios e edícula, todos com ar-condicionado)Garagem para no mínimo 02 carros.Valor do Pacote: R$ 5.500Garantias aceitas pelo proprietário: 03(três) meses de deposito caução,fiador ou seguro fiançaNão operamos negociações em prazos inferiores ou para temporadas, feriados e afins. Agende uma visita. Entre em contato com um de nossos corretores.Os valores, disponibilidade e condições de pagamento estão sujeitos a confirmação com o proprietário, podendo sofrer alterações a qualquer tempo..",
+      "numberRooms": 2,
+      "numberBathrooms": 3,
+      "numberGarage": 2,
+      "propertyType": "Casa",
+      "isSale": false,
+      "isInCondo": false,
+      "hasPoolProperty": true,
+      "hasAirConditioningProperty": true,
+      "hasGrillProperty": true,
+      "hasFurnitureProperty": true,
+      "hasPollCondo": true,
+      "hasSecurity24hCondo": true,
+      "hasGymCondo": false,
+      "hasPartyHallCondo": false,
+      "price": 5500,
+      "priceCondo": 4000,
+      "isCondoPriceIncluded": false,
+      "state": "SP",
+      "city": "Santos",
+      "isDisplayContact": false,
+      "isActive": true,
+      "viewsCounter": 3,
+      "updatedAt": "2023-05-14T14:29:45.877Z",
+      "createdAt": "2023-05-04T14:55:44.718Z",
+      "photos": [
+        {
+          "id": "50badbbf-53cc-4080-acb3-fec3c39e61fa",
+          "photoUrl": "https://res.cloudinary.com/ddx0hsa8o/image/upload/v1683212145/onthlbshn8r4bfvjlnwp.jpg"
+        },
+        {
+          "id": "243a254e-5c25-4f3c-a2ab-e968b1ecac22",
+          "photoUrl": "https://res.cloudinary.com/ddx0hsa8o/image/upload/v1683212145/uwsrinqa2acrbemoatrs.jpg"
+        },
+        {
+          "id": "2d095c7a-e1b5-45d3-ae3d-24e8515f0e4e",
+          "photoUrl": "https://res.cloudinary.com/ddx0hsa8o/image/upload/v1683212145/nijbpv1t8ddfb3wsm4vx.jpg"
+        }
+      ]
+    },
+    {
+      "id": "2c300c09-bfdc-45be-9626-157242a4828d",
+      "title": "casa - Loteamento Residencial Vila Bella - Campinas",
+      "description": "Excelente sobrado, em condomínio fechado, próximo ao Shopping Dom Pedro e ao lado do The Mall, uma espaço de compras, com supermercado, farmácias, restaurantes, papelaria e padaria, com portaria 24 horas, piscina, salão de festas, um espaço kids, ao ar livre, garagem descoberta para 2 veículos. O sobrado tem sala p 2 ambientes, com lavabo, cozinha integrada para a área externa, lavanderia, no andar superior, banheiro, 3 dormitórios, todos com armários, sendo uma suíte. Excelente oportunidade, condomínio muito desejado por ser um dos poucos com portaria 24 horas. Agende sua visita! -",
+      "numberRooms": 3,
+      "numberBathrooms": 3,
+      "numberGarage": 2,
+      "propertyType": "Casa",
+      "isSale": false,
+      "isInCondo": true,
+      "hasPoolProperty": true,
+      "hasAirConditioningProperty": true,
+      "hasGrillProperty": true,
+      "hasFurnitureProperty": true,
+      "hasPollCondo": true,
+      "hasSecurity24hCondo": true,
+      "hasGymCondo": false,
+      "hasPartyHallCondo": false,
+      "price": 4200,
+      "priceCondo": 4000,
+      "isCondoPriceIncluded": false,
+      "state": "SP",
+      "city": "Campinas",
+      "isDisplayContact": true,
+      "isActive": true,
+      "viewsCounter": 99,
+      "updatedAt": "2023-05-14T17:33:25.985Z",
+      "createdAt": "2023-05-04T14:52:47.893Z",
+      "photos": [
+        {
+          "id": "5701f784-31c6-44b7-b748-ca5e7f1cbedd",
+          "photoUrl": "https://res.cloudinary.com/ddx0hsa8o/image/upload/v1683211968/gqgwkk3pft8xbrj5j4ss.jpg"
+        },
+        {
+          "id": "c6ee2f10-de93-4043-8ebf-5744e4366ed5",
+          "photoUrl": "https://res.cloudinary.com/ddx0hsa8o/image/upload/v1683211968/wj6yomtb30x5wsw8tx3h.jpg"
+        }
+      ],
+      "contact": "21999999999"
     }
   ]
 }
@@ -1099,17 +1318,93 @@ Retorno esperado - 200
 Possíveis erros
 
 401
+
 ```JSON
 {
-  "message": "Missing headers authorization"
+	"message": "Missing headers authorization"
 }
 ```
 
+#
+
+#### GET/properties/{propertyId}
+
+Buscar propriedade/anúncio
+
+> Ao buscar o anúncio, a quantidade visualizações(viewsCounter) é atualizada para +1
+
+> Só é possível buscar as pripriedades que estejam com o isActive == true
+
+Retorno esperado - 200
+
+```JSON
+{
+  "id": "80145b27-4d9d-48f1-a527-bb13ae540b2a",
+  "title": "Título",
+  "description": "Descrição",
+  "numberRooms": 4,
+  "numberBathrooms": 3,
+  "numberGarage": 8,
+  "propertyType": "Casa",
+  "isSale": true,
+  "isInCondo": true,
+  "hasPoolProperty": true,
+  "hasAirConditioningProperty": true,
+  "hasGrillProperty": true,
+  "hasFurnitureProperty": false,
+  "hasPollCondo": true,
+  "hasSecurity24hCondo": true,
+  "hasGymCondo": false,
+  "hasPartyHallCondo": false,
+  "price": 2198311,
+  "priceCondo": 4000,
+  "isCondoPriceIncluded": true,
+  "state": "Rio de Janeiro",
+  "city": "Rio de Janeiro",
+  "contact": "21988889999",
+  "isDisplayContact": false,
+  "isActive": true,
+  "viewsCounter": 2,
+  "updatedAt": "2023-04-21T23:40:00.251Z",
+  "createdAt": "2023-04-21T23:36:17.424Z",
+  "photos": [
+    {
+      "id": "9e3ce3ee-3a92-4e51-ba23-ebe5ab53c72a",
+      "photoUrl": "https://res.cloudinary.com/dhomn9ckx/image/upload/v1682120414/phpwohqbsrvxzvlwandp.jpg"
+    },
+    {
+      "id": "8fd82bf8-7dba-484d-9dbd-d4bd9d7462d5",
+      "photoUrl": "https://res.cloudinary.com/dhomn9ckx/image/upload/v1682120415/dz4vqlnychoqjrovmhcr.jpg"
+    },
+    {
+      "id": "62d8089d-22ca-4a06-a06d-a539f06b2a1f",
+      "photoUrl": "https://res.cloudinary.com/dhomn9ckx/image/upload/v1682120415/hrgfgbx5kkbs1f0lfdlv.jpg"
+    },
+    {
+      "id": "0e387dc4-96e7-4adb-ba83-8437ce1bb976",
+      "photoUrl": "https://res.cloudinary.com/dhomn9ckx/image/upload/v1682120415/ytwq3dmfuokaoelvo7to.jpg"
+    }
+  ]
+}
+
+```
+
+#
+
+Possíveis erros
+
+404
+
+```JSON
+{
+	"message": "Property not found"
+}
+```
 
 <br>
+
 ## 📄 Licença
 
-Este projeto está sob a licença do MIT - veja o arquivo [LICENSE](https://github.com/steinerstt/api-ziti/blob/main/LICENSE) para detalhes.
+Este projeto está sob a licença do MIT - veja o arquivo [LICENSE](https://github.com/steinerstt/api-webcasas/blob/main/LICENSE) para detalhes.
 
 Feito com ❤ por [Steiner](https://github.com/steinerstt)
-
